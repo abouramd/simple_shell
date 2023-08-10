@@ -41,4 +41,6 @@ typedef struct s_lexer {
 
 t_lexer *lexer(t_getline* line);
 
+char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc);
+
 #endif

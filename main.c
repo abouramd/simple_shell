@@ -1,5 +1,6 @@
 #include "shell.h"
 #include "pars.h"
+#include <stdio.h>
 #include <unistd.h>
 
 void string_print(t_string *ptr)
@@ -23,6 +24,26 @@ void lexer_print(t_lexer *ptr)
 
 }
 
+void cmd_print(t_lexer *ptr)
+{
+	char **cmd;
+	bool pip;
+	bool smc;
+
+	while (ptr)
+	{
+		printf("----------------------\n");
+		cmd = fill_cmd(&ptr, &pip, &smc);
+		printf("pip = %s\n", pip?"true":"false");
+		printf("smc = %s\n", smc?"true":"false");
+		while (cmd && *cmd)
+			printf("cmd = %s\n", *(cmd++));
+		if (!cmd)
+			printf("cmd = %s\n", *cmd);
+		printf("----------------------\n");
+	}
+}
+
 int main()
 {
 	t_getline l;
@@ -33,9 +54,9 @@ int main()
 		l.characters = getline(&l.buffer,&l.bufsize,stdin);
 		if (l.characters == -1)
 			return (0);
-		printf("-> %ld %s", l.characters, l.buffer);
 		x = lexer(&l);
-		lexer_print(x);
+		// lexer_print(x);
+		cmd_print(x);
 	}
 
 	return (0);
