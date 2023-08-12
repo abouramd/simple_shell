@@ -1,6 +1,6 @@
 # Simple UNIX Command Interpreter (Shell) Project
 
-<!-- ![Shell](https://github.com/yourusername/simple-shell/raw/main/images/shell.png) -->
+![Shell](https://s3.amazonaws.com/intranet-projects-files/holbertonschool-low_level_programming/235/shell.jpeg)
 
 This is a simple UNIX command interpreter, also known as a shell, developed as part of the ALX SE curriculum. The purpose of this project is to gain a deep understanding of various programming concepts, the C programming language, and the fundamentals of UNIX systems. The project is based on the teachings of Julien Barbier and is aimed at improving your skills in:
 
