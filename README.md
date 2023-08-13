@@ -60,7 +60,7 @@ Follow these steps to get started with the shell project:
 1. Clone this repository:
 
    ```bash
-   git clone https://github.com/yourusername/simple-shell.git
+   git clone https://github.com/abouramd/simple-shell.git
    cd simple-shell
    ```
 

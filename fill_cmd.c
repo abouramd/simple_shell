@@ -15,7 +15,7 @@ char *convert_string(t_string *s)
 	char qout = 0;
 
 	size = string_size(s);
-	str = calloc(sizeof(char), size + 1);
+	str = my_malloc(sizeof(char) * (size + 1));
 	if (!str)
 		return (str);
 	while (s)
@@ -107,7 +107,7 @@ char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc)
 
 	head = new_cmd(lexer, pip, smc);
 	size = cmd_size(head);
-	cmd = calloc(sizeof(char *), size + 1);
+	cmd = my_malloc(sizeof(char *) * (size + 1));
 	if (!cmd)
 		return (NULL);
 	while (head)

@@ -55,4 +55,6 @@ char *convert_string(t_string *s);
 
 void new_lexer(t_lexer **head, t_string *c, t_type type);
 
+char *itoa(long num);
+
 #endif

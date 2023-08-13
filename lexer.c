@@ -5,7 +5,7 @@ void new_string(t_string **head, char c)
 	t_string *str;
 	static t_string *s;
 
-	str = calloc(sizeof(t_string), 1);
+	str = my_malloc(sizeof(t_string));
 	if (!str)
 		return;
 	str->c = c;
@@ -26,7 +26,7 @@ void new_lexer(t_lexer **head, t_string *c, t_type type)
 	t_lexer *node;
 	static t_lexer *s;
 
-	node = calloc(sizeof(t_lexer), 1);
+	node = my_malloc(sizeof(t_lexer));
 	if (!node)
 		return;
 	node->content = c;

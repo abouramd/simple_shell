@@ -2,6 +2,7 @@
 #define SHELL_H
 
 #include <stdlib.h>
+#include <limits.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <signal.h>
@@ -9,6 +10,8 @@
 #include <stddef.h>
 #include <stdbool.h>
 #include <string.h>
+#include "my_alloc.h"
+
 
 typedef struct s_env {
 	char *key;
@@ -16,7 +19,7 @@ typedef struct s_env {
 	struct s_env *next;
 }	t_env;
 
-struct s_env *genv;
+static struct s_env *genv;
 
 char *find_env(char *s);
 

@@ -6,7 +6,7 @@ void new_env(t_env **head, char *value, char *key)
 	t_env *node;
 	static t_env *s;
 
-	node = calloc(sizeof(t_env), 1);
+	node = my_malloc(sizeof(t_env));
 	if (!node)
 		return;
 	node->key = strdup(key);

@@ -1,7 +1,7 @@
 #include "pars.h"
 #include "shell.h"
-#include <_ctype.h>
 #include <ctype.h>
+#include <unistd.h>
 
 char *get_id(t_string **str)
 {
@@ -9,7 +9,7 @@ char *get_id(t_string **str)
 	t_string	*tmp;
 	char		*s;
 		
-	while ((*str)->next && (isalpha((*str)->next->c) || isnumber((*str)->next->c) || (*str)->next->c == '_'))
+	while ((*str)->next && (isalpha((*str)->next->c) || ((*str)->next->c <= '9' && (*str)->c >= '0') || (*str)->next->c == '_'))
 		(*str) = (*str)->next;
 	tmp = (*str)->next;
 	(*str)->next = NULL;
@@ -25,21 +25,20 @@ void replace_value(t_string **new, t_string **str)
 		new_string(new, '$');
 	else if ((*str)->c == '?')
 	{
-		new_string(new, '<');
-		new_string(new, 'E');
-		new_string(new, '>');	
+		char *s = itoa(255);/* replace 255 with the exit status */
+		while (s && *s)
+			new_string(new, *(s++));
 		(*str) = (*str)->next;
 	}
 	else if ((*str)->c == '$')
 	{
-		new_string(new, '<');
-		new_string(new, 'P');
-		new_string(new, '>');
+		char *s = itoa(getpid());
+		while (s && *s)
+			new_string(new, *(s++));
 		(*str) = (*str)->next;
 	}
 	else if (isalpha((*str)->c) || (*str)->c == '_')
 	{
-		int i = 0;
 		char *id = get_id(str);
 		char *value = find_env(id);
 		while (value && *value)

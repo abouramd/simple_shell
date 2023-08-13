@@ -1,5 +1,7 @@
 #include "shell.h"
+#include "my_alloc.h"
 #include "pars.h"
+#include <stddef.h>
 #include <stdio.h>
 #include <unistd.h>
 
@@ -60,18 +62,21 @@ int main(int ac, char **av, char **env)
 	t_getline l;
 	t_lexer *x;
 
-	genv = fill_env(env);
+	//genv = fill_env(env);
 	//env_print(genv);
+	(void) ac;
+	(void) av;
 	while (true) {
 		write(1, "prompt >> ", 10);
 		l.characters = getline(&l.buffer,&l.bufsize,stdin);
-		if (l.characters == -1)
+		if (l.characters == (size_t)-1)
 			return (0);
 		x = lexer(&l);
 		// lexer_print(x);
 		cmd_print(x);
+		my_free();
+		//free(l.buffer);
 	}
-
 	return (0);
 }
 
