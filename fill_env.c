@@ -37,6 +37,17 @@ char *find_env(char *s)
 	return NULL;
 }
 
+void free_env(t_env **env)
+{
+	if (env && *env)
+	{
+		free_env(&(*env)->next);
+		free((*env)->key);
+		free((*env)->value);
+		free(*env);
+		*env = NULL;
+	}
+}
 t_env *fill_env(char **env)
 {
 	t_env *nenv = NULL;

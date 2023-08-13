@@ -56,13 +56,12 @@ void env_print(t_env *env)
 	}
 }
 
-
 int main(int ac, char **av, char **env)
 {
 	t_getline l;
 	t_lexer *x;
 
-	//genv = fill_env(env);
+	genv = fill_env(env);
 	//env_print(genv);
 	(void) ac;
 	(void) av;
@@ -70,12 +69,11 @@ int main(int ac, char **av, char **env)
 		write(1, "prompt >> ", 10);
 		l.characters = getline(&l.buffer,&l.bufsize,stdin);
 		if (l.characters == (size_t)-1)
-			return (0);
+			return (free_env(&genv), free(l.buffer), 0);
 		x = lexer(&l);
 		// lexer_print(x);
 		cmd_print(x);
 		my_free();
-		//free(l.buffer);
 	}
 	return (0);
 }

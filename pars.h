@@ -46,7 +46,6 @@ char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc);
 
 void new_string(t_string **head, char c);
 
-// char *expand(t_string *str);
 t_string *expand(t_string *str);
 
 t_env *fill_env(char **env);
@@ -56,5 +55,7 @@ char *convert_string(t_string *s);
 void new_lexer(t_lexer **head, t_string *c, t_type type);
 
 char *itoa(long num);
+
+void free_env(t_env **env);
 
 #endif
