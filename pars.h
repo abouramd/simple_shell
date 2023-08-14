@@ -6,7 +6,7 @@
 typedef enum s_type {
 	STR,
 	PIP,
-	SMC,
+	SMC
 } t_type;
 
 typedef struct s_string {

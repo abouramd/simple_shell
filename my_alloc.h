@@ -14,4 +14,4 @@ typedef struct s_alloc {
 void *my_malloc(size_t size);
 void my_free(void);
 
-#endif // !MY_ALLOC_H
+#endif

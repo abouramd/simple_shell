@@ -84,7 +84,7 @@ t_lexer *new_cmd(t_lexer **lexer, bool *pip, bool *smc)
 	while (*lexer && (*lexer)->type == STR)
 	{
 		str = expand((*lexer)->content);
-		// cmd[index++] = convert_string((*lexer)->content);
+		/* cmd[index++] = convert_string((*lexer)->content); */
 		split_lexer(&head, str);
 		*lexer = (*lexer)->next;
 	}

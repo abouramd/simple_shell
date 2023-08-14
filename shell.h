@@ -19,8 +19,6 @@ typedef struct s_env {
 	struct s_env *next;
 }	t_env;
 
-static struct s_env *genv;
-
 char *find_env(char *s);
 
 #endif

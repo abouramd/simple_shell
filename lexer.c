@@ -47,7 +47,7 @@ t_lexer *lexer(t_getline *line)
 {
 	t_lexer *head = NULL;
 	t_string	*str;
-	size_t i = 0;
+	ssize_t i = 0;
 	char qout = 0;
 
 	while (i < line->characters)

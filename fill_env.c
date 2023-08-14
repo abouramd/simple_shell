@@ -27,19 +27,6 @@ void new_env(t_env **head, char *value, char *key)
 	}
 }
 
-char *find_env(char *s)
-{
-	t_env *tmp;
-
-	tmp = genv;
-	while (tmp)
-	{
-		if (!strcmp(tmp->key, s))
-			return (tmp->value);
-		tmp = tmp->next;
-	}
-	return NULL;
-}
 
 void free_env(t_env **env)
 {
