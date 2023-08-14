@@ -91,8 +91,8 @@ int main(int ac, char **av, char **env)
 		x = lexer(&l);
 		/* lexer_print(x); */
 		cmd_print(x);
-		my_free();
-		free(l.buffer);
+		my_free(); /* free all the data that you allocat with my_alloc */
+		free(l.buffer); /* free buffer */
 	}
 	return (0);
 }
