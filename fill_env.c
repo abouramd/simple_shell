@@ -6,11 +6,15 @@ void new_env(t_env **head, char *value, char *key)
 	t_env *node;
 	static t_env *s;
 
-	node = my_malloc(sizeof(t_env));
+	node = malloc(sizeof(t_env));
 	if (!node)
 		return;
 	node->key = strdup(key);
-	node->value = strdup(value);
+	if (value)
+		node->value = strdup(value);
+	else
+	 	node->value = NULL;
+	node->next = NULL;
 	if (!*head)
 	{
 		*head = node;
@@ -45,7 +49,6 @@ void free_env(t_env **env)
 		free((*env)->key);
 		free((*env)->value);
 		free(*env);
-		*env = NULL;
 	}
 }
 t_env *fill_env(char **env)
@@ -71,3 +74,4 @@ t_env *fill_env(char **env)
 	}
 	return (nenv);
 }
+

@@ -1,13 +1,12 @@
 #include "my_alloc.h"
 
-static void free_alloc(t_alloc **ptr)
+static void free_alloc(t_alloc *ptr)
 {
-	if (ptr && *ptr)
+	if (ptr)
 	{
-		free_alloc(&(*ptr)->next);
-		free((*ptr)->ptr);
-		free(*ptr);
-		*ptr = NULL;
+		free_alloc((ptr)->next);
+		free((ptr)->ptr);
+		free(ptr);
 	}
 }
 
@@ -27,7 +26,10 @@ static void *save_addr(size_t size, bool clear)
 	char *ptr = NULL;
 
 	if (clear)
-		free_alloc(&alloc);
+	{
+		free_alloc(alloc);
+		alloc = NULL;
+	}
 	else if (size)
 	{
 		if (!(ptr = malloc(size)))

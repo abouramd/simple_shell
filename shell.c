@@ -9,7 +9,7 @@ void string_print(t_string *ptr)
 {
 	if (!ptr)
 		return;
-	write(1, &ptr->c, 2);
+	write(1, &ptr->c, 1);
 	string_print(ptr->next);
 }
 
@@ -66,14 +66,17 @@ int main(int ac, char **av, char **env)
 	(void) ac;
 	(void) av;
 	while (true) {
+		l.bufsize = 0;
+		l.buffer = NULL;
 		write(1, "prompt >> ", 10);
 		l.characters = getline(&l.buffer,&l.bufsize,stdin);
-		if (l.characters == (size_t)-1)
+		if (l.characters == -1)
 			return (free_env(&genv), free(l.buffer), 0);
 		x = lexer(&l);
 		// lexer_print(x);
 		cmd_print(x);
 		my_free();
+		free(l.buffer);
 	}
 	return (0);
 }

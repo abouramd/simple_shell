@@ -22,7 +22,7 @@ typedef struct s_string {
  */
 
 typedef struct s_getline {
-	size_t	characters;
+	ssize_t	characters;
 	char	*buffer;
 	size_t	bufsize;
 } t_getline;
