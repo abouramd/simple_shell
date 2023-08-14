@@ -87,7 +87,7 @@ int main(int ac, char **av, char **env)
 		write(1, "prompt >> ", 10);
 		l.characters = getline(&l.buffer,&l.bufsize,stdin);
 		if (l.characters == -1)
-			return (free_env(&genv), free(l.buffer), 0);
+			return (free_env(&genv), free(l.buffer), 0); /* replace 0 with the exit status*/
 		x = lexer(&l);
 		/* lexer_print(x); */
 		cmd_print(x);
