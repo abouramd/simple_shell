@@ -28,11 +28,14 @@ void exec(t_lexer *ptr, t_env *genv, int *status)
 	bool pip;
 	bool sim;
 
-	cmd = fill_cmd(&ptr, &pip, &sim);
-	if (is_builtin(cmd[0]))
+	while (ptr)
 	{
-		*status = builtin(cmd, &genv);
-	}
-	else
+		cmd = fill_cmd(&ptr, &pip, &sim);
+		if (is_builtin(cmd[0]))
+		{
+			*status = builtin(cmd, &genv);
+		}
+		else
 		*status = exec_cmd(cmd, genv);
+	}
 }
