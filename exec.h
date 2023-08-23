@@ -15,7 +15,7 @@ typedef struct builtin_struct
 }t_built;
 
 	
-void exec(t_lexer *ptr, t_env *genv, int *status);
+void exec(t_lexer *ptr, t_env **genv, int *status);
 int is_builtin(char *cmd);
 
 int	ft_atoi(const char *str);
