@@ -3,9 +3,9 @@
 void update_pwd(t_env ***genv)
 {
 	char cwd[PATH_MAX];
-	getcwd(cwd, PATH_MAX);
 	t_env *head = *(*genv);
-	while(cwd && head->next)
+	getcwd(cwd, PATH_MAX);
+	while(head->next)
 	{
 		if (strcmp(head->key, "HOME") == 0)
 		{
@@ -39,41 +39,29 @@ void update_oldpwd(char *v, t_env **genv)
 int _cd(char **cmd, t_env **genv)
 {
 	char buf[PATH_MAX];
+	int ret = 1;
 	getcwd(buf, PATH_MAX);
-	int ret ;
 	if (!cmd[1])
 	{
-		// printf("\nbefore pwd%s\n", find_env("PWD"));
-		// printf("\nbefore oldpwd%s\n", find_env("OLDPWD"));
 		ret = chdir(find_env("HOME"));
 		update_pwd(&genv);
-		// printf("\nafter pwd%s\n", find_env("PWD"));
-		// printf("\nafter oldpwd%s\n", find_env("OLDPWD"));
 		return (ret);
 	}
 	else if (cmd[1] && cmd[2])
 	{
 		perror("cd: too many argument");
-		return 1;
+		return ret;
 	}
 	else if (cmd[1] && strcmp(cmd[1], "-") != 0)
 	{
-		// printf("\nbefore pwd%s\n", find_env("PWD"));
-		// printf("\nbefore oldpwd%s\n", find_env("OLDPWD"));
 		ret = chdir(cmd[1]);
 		update_oldpwd(buf, genv);
-		// printf("\nafter pwd%s\n", find_env("PWD"));
-		// printf("\nafter oldpwd%s\n", find_env("OLDPWD"));
 		return ret;
 	}
 	else
 	{
-		// printf("\nbefore pwd%s\n", find_env("PWD"));
-		// printf("\nbefore oldpwd%s\n", find_env("OLDPWD"));
 		ret = chdir(find_env("OLDPWD"));
 		update_oldpwd(buf, genv);
-		// printf("\nafter pwd%s\n", find_env("PWD"));
-		// printf("\nafter oldpwd%s\n", find_env("OLDPWD"));
 		return ret;
 	}
 

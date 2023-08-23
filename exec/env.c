@@ -2,8 +2,8 @@
 
 int _env(char **cmd, t_env **genv)
 {
-	(void)cmd;
 	t_env *head = (*genv);
+	(void)cmd;
 	if (!head)
 		return (-2);
 	while(head)

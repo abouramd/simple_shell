@@ -1,5 +1,5 @@
 #include "exec.h"
-
+int stt;
 int is_builtin(char *cmd)
 {
 	if (!strcmp(cmd, "exit") || !strcmp(cmd, "setenv") || !strcmp(cmd, "env") 
@@ -18,10 +18,9 @@ void exec(t_lexer *ptr, t_env *genv)
 	
 	if (is_builtin(cmd[0]))
 	{
-		// printf("\n\n11111111\n\n");
 		ret = builtin(cmd, &genv);
 	}
 	else
 		ret = exec_cmd(cmd, genv);
-
+	stt = ret;
 }

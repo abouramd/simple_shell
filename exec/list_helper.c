@@ -16,8 +16,10 @@ void newnode(char *k, char *v, t_env **genv)
 
 void delete_node(char *k, t_env **genv)
 {
-	t_env *current = *genv;
-	t_env *prev = *genv;
+	t_env *current;
+	t_env *prev;
+	current = *genv;
+	prev = current;
 	if (!(*genv))
 		return ;
 	else if (strcmp((*genv)->key, k) == 0)
@@ -37,6 +39,7 @@ void delete_node(char *k, t_env **genv)
 		prev = current;
 		current = current->next;
 	}
+	current = prev;
 	return ;
 }
 
@@ -64,4 +67,18 @@ char **list_to_env(t_env *genv)
 	}
 	env[i] = NULL;
 	return (env);
+}
+
+char **free_matrix(char **str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+	{
+		free(str[i]);
+		i++;
+	}
+	free(str);
+	return (NULL);
 }
