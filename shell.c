@@ -5,8 +5,8 @@
 #include <stdio.h>
 #include <unistd.h>
 
-void exec(t_lexer *ptr, t_env *genv, int *status);
 
+void exec(t_lexer *ptr, t_env **genv, int *status);
 t_env *genv;
 char *find_env_p(char *s, t_env *env)
 {
@@ -105,7 +105,7 @@ int main(int ac, char **av, char **env)
 		if (l.characters == -1)
 			return (free_env(&genv), free(l.buffer), status); /* replace 0 with the exit status*/
 		x = lexer(&l);
-		exec(x, genv, &status);
+		exec(x, &genv, &status);
 		/* lexer_print(x); */
 		/* cmd_print(x);*/
 		my_free(); /* free all the data that you allocat with my_alloc */
