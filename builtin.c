@@ -1,5 +1,11 @@
 #include "exec.h"
 
+/**
+ * builtin - function to call apropriate builtin function
+ *@cmd: first argument
+ *@genv:  second argument
+ * Return: return 0 on success otherwise return error
+ */
 int builtin(char **cmd, t_env **genv)
 {
 	t_built builtin[] = {
@@ -12,11 +18,12 @@ int builtin(char **cmd, t_env **genv)
 		{NULL, NULL},
 	};
 	int i;
+
 	for (i = 0; builtin[i].builtin; i++)
 	{
 		if (!strcmp(builtin[i].builtin, cmd[0]))
 		{
-			return(builtin[i].func(cmd, genv));
+			return (builtin[i].func(cmd, genv));
 		}
 	}
 	return (0);

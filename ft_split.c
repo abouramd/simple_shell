@@ -1,5 +1,12 @@
 #include "exec.h"
 
+/**
+ *ft_strlcpy - function to copy src in dest
+*@dst: frst parameter
+ *@src: second parameter
+ * @dstsize: third parameter
+ * Return: number of character copyed from src to dst
+ */
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	if (strlen(src) + 1 < dstsize)
@@ -12,6 +19,12 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	return (strlen(src));
 }
 
+/**
+ * count_words - fucntion count how many word in string separated by c
+ * @s: string
+ * @c: second argument
+ * Return: number of words
+ */
 static int	count_words(char *s, char c)
 {
 	int	i;
@@ -31,7 +44,12 @@ static int	count_words(char *s, char c)
 	}
 	return (count);
 }
-
+/**
+ * free_allocation - funcion to free allocation memory
+ * @arr: first argument
+ * @k: second argument
+ * Return: return NULL
+ */
 static char	**free_allocation(char **arr, int k)
 {
 	while (k >= 0)
@@ -42,6 +60,15 @@ static char	**free_allocation(char **arr, int k)
 	free(arr);
 	return (NULL);
 }
+
+/**
+ * ft_allocate - function to allocate every word alone
+ * @s: first argument
+ * @c: second argumnet
+ * @arr: third argument
+ * @words: fourth argument
+ * Return: return strings on success otherwise return NULL
+*/
 
 static char	**ft_allocate(char *s, char c, char **arr, int words)
 {
@@ -70,6 +97,12 @@ static char	**ft_allocate(char *s, char c, char **arr, int words)
 	arr[words] = 0;
 	return (arr);
 }
+/**
+ * ft_split - function to split string to strings using delimeter c
+ * @s: string to split
+ * @c: delimeter passed as parameter
+ * Return: string on success otherwise NULL
+ */
 
 char	**ft_split(char *s, char c)
 {
