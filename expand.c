@@ -14,8 +14,12 @@ char *get_id(t_string **str)
 	t_string	*save = (*str);
 	t_string	*tmp;
 	char		*s;
-		
-	while ((*str)->next && (isalpha((*str)->next->c) || ((*str)->next->c <= '9' && (*str)->c >= '0') || (*str)->next->c == '_'))
+	
+	while ((*str)->next \
+	&& (isalpha((*str)->next->c) \
+	|| ((*str)->next->c <= '9' \
+	&& (*str)->c >= '0') \
+	|| (*str)->next->c == '_'))
 		(*str) = (*str)->next;
 	tmp = (*str)->next;
 	(*str)->next = NULL;
