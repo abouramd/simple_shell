@@ -105,7 +105,7 @@ char **free_matrix(char **str)
 	while (str[i])
 	{
 		free(str[i]);
-	`	i++;
+		i++;
 	}
 	free(str);
 	return (NULL);

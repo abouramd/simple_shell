@@ -13,7 +13,6 @@ int builtin(char **cmd, t_env **genv)
 		{"env", _env},
 		{"setenv", _setenv},
 		{"unsetenv", _unsetenv},
-		{"alias", _alias},
 		{"cd", _cd},
 		{NULL, NULL},
 	};

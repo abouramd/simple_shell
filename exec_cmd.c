@@ -79,7 +79,6 @@ int exec_cmd(char **cmd, t_env *genv)
 			execve(comand, cmd, list_to_env(genv));
 			if (errno == EACCES)
 				ret = 126;
-			 free_matrix(env);
 			 exit(ret);
 		}
 		else
