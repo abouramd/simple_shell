@@ -3,13 +3,28 @@
 
 #include "shell.h"
 
-typedef enum s_type {
+/**
+ * enum s_type - type of token.
+ * @STR: string type.
+ * @PIP: | type.
+ * @SMC: ; type.
+ */
+
+typedef enum s_type
+{
 	STR,
 	PIP,
 	SMC
 } t_type;
 
-typedef struct s_string {
+/**
+ * struct s_string - data type use in pars.
+ * @c: the content of the node.
+ * @next: thr next char.
+ */
+
+typedef struct s_string
+{
 	char c;
 	struct s_string *next;
 } t_string;
@@ -21,7 +36,8 @@ typedef struct s_string {
  * @bufsize: the size of the buffer
  */
 
-typedef struct s_getline {
+typedef struct s_getline
+{
 	ssize_t	characters;
 	char	*buffer;
 	size_t	bufsize;
@@ -31,16 +47,18 @@ typedef struct s_getline {
  * struct s_lexer - split the member
  * @content: the content
  * @type: the type of the token
+ * @next: the next node.
  */
 
-typedef struct s_lexer {
+typedef struct s_lexer
+{
 	t_type type;
 	t_string *content;
 	struct s_lexer *next;
 } t_lexer;
 
 
-t_lexer *lexer(t_getline* line);
+t_lexer *lexer(t_getline *line);
 
 char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc);
 

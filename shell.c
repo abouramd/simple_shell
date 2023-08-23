@@ -8,6 +8,11 @@
 t_env *genv;
 void exec(t_lexer *ptr, t_env *genv);
 
+/**
+ * find_env - find th value of a key.
+ * @s: the key.
+ * Return: the value of var.
+ */
 
 char *find_env(char *s)
 {

@@ -12,6 +12,12 @@
 #include <string.h>
 #include "my_alloc.h"
 
+/**
+ * struct s_env - struct of env content.
+ * @key: the name of var.
+ * @value: the value of the var.
+ */
+
 typedef struct s_env {
 	char *key;
 	char *value;
@@ -19,4 +25,6 @@ typedef struct s_env {
 }	t_env;
 
 char *find_env(char *s);
+
 #endif
+
