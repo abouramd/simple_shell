@@ -27,7 +27,7 @@ char *find_env(char *s)
 	}
 	return NULL;
 }
-/*
+
 void string_print(t_string *ptr)
 {
 	if (!ptr)
@@ -78,7 +78,7 @@ void env_print(t_env *env)
 		env = env->next;
 	}
 }
-*/
+
 /**
  * main - start program.
  * @ac: num of args.
@@ -103,9 +103,9 @@ int main(int ac, char **av, char **env)
 		if (l.characters == -1)
 			return (free_env(&genv), free(l.buffer), 0); /* replace 0 with the exit status*/
 		x = lexer(&l);
-		exec(x, genv);
+		/* exec(x, genv); */
 		/* lexer_print(x); */
-		/* cmd_print(x);*/
+		cmd_print(x);
 		my_free(); /* free all the data that you allocat with my_alloc */
 		free(l.buffer); /* free buffer */
 	}

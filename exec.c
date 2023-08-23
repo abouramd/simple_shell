@@ -29,6 +29,8 @@ int exec(t_lexer *ptr, t_env *genv)
 	int ret;
 
 	cmd = fill_cmd(&ptr, &pip, &sim);
+	printf("%p\n\n\n", (void *)cmd);
+	exit(0);
 	if (is_builtin(cmd[0]))
 	{
 		ret = builtin(cmd, &genv);
