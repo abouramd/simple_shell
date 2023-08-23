@@ -1,0 +1,14 @@
+    builtin 
+- exit
+- env
+- setenv
+- unsetenv
+- cd 
+- alias
+
+
+    list_helper
+- newnode
+- push_back
+- delete_node
+- 

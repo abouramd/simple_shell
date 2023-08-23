@@ -12,7 +12,6 @@
 #include <string.h>
 #include "my_alloc.h"
 
-
 typedef struct s_env {
 	char *key;
 	char *value;
@@ -20,5 +19,4 @@ typedef struct s_env {
 }	t_env;
 
 char *find_env(char *s);
-
 #endif
