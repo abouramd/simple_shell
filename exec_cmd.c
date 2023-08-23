@@ -59,9 +59,10 @@ int exec_cmd(char **cmd, t_env *genv)
 	if (!comand || access(comand, F_OK) == -1)
 	{
 		if (errno == EACCES)
-			exit(126);
+			ret = 126;
 		else
-			exit(127);
+			ret = 127;
+		perror(NULL);
 	}
 	else
 	{
