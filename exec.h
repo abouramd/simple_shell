@@ -6,7 +6,7 @@
 #include <linux/limits.h>
 #include <sys/stat.h>
 #include <errno.h>
-#include <bsd/string.h>
+/* #include <bsd/string.h> */
 
 
 typedef struct builtin_struct

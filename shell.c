@@ -27,7 +27,7 @@ char *find_env(char *s)
 	}
 	return NULL;
 }
-
+/*
 void string_print(t_string *ptr)
 {
 	if (!ptr)
@@ -78,6 +78,13 @@ void env_print(t_env *env)
 		env = env->next;
 	}
 }
+*/
+/**
+ * main - start program.
+ * @ac: num of args.
+ * @av: args.
+ * @env: env.
+ */
 
 int main(int ac, char **av, char **env)
 {
