@@ -44,3 +44,4 @@ char *convert_string(t_string *s)
 	str[index] = 0;
 	return (str);
 }
+

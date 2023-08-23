@@ -73,10 +73,10 @@ bool check_char(t_getline *line, int i, char *qout)
 	else if (*qout == line->buffer[i])
 		*qout = 0;
 	if (*qout == 0)
-		if (line->buffer[i] == ' '\
-		|| line->buffer[i] == '\t'\
-		|| line->buffer[i] == '\n'\
-		|| line->buffer[i] == '|'\
+		if (line->buffer[i] == ' '
+		|| line->buffer[i] == '\t'
+		|| line->buffer[i] == '\n'
+		|| line->buffer[i] == '|'
 		|| line->buffer[i] == ';')
 			return (true);
 	return (false);
@@ -107,7 +107,7 @@ t_lexer *lexer(t_getline *line)
 		{
 			if (check_char(line, i, &qout))
 				break;
-			new_string(&str, line->buffer[i]);	
+			new_string(&str, line->buffer[i]);
 			i++;
 		}
 		if (str)

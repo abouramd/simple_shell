@@ -14,11 +14,11 @@ char *get_id(t_string **str)
 	t_string	*save = (*str);
 	t_string	*tmp;
 	char		*s;
-	
-	while ((*str)->next \
-	&& (isalpha((*str)->next->c) \
-	|| ((*str)->next->c <= '9' \
-	&& (*str)->c >= '0') \
+
+	while ((*str)->next
+	&& (isalpha((*str)->next->c)
+	|| ((*str)->next->c <= '9'
+	&& (*str)->c >= '0')
 	|| (*str)->next->c == '_'))
 		(*str) = (*str)->next;
 	tmp = (*str)->next;
@@ -32,6 +32,8 @@ char *get_id(t_string **str)
  * replace_value - replace the value of the var name
  * @new: the new string
  * @str: old string.
+ * @env: env
+ * @e: exit status.
  * Return: no return value.
  */
 
@@ -43,6 +45,7 @@ void replace_value(t_string **new, t_string **str, t_env *env, int e)
 	else if ((*str)->c == '?')
 	{
 		char *s = itoa(e);/* replace 255 with the exit status */
+
 		while (s && *s)
 			new_string(new, *(s++));
 		(*str) = (*str)->next;
@@ -50,6 +53,7 @@ void replace_value(t_string **new, t_string **str, t_env *env, int e)
 	else if ((*str)->c == '$')
 	{
 		char *s = itoa(getpid());
+
 		while (s && *s)
 			new_string(new, *(s++));
 		(*str) = (*str)->next;
@@ -58,6 +62,7 @@ void replace_value(t_string **new, t_string **str, t_env *env, int e)
 	{
 		char *id = get_id(str);
 		char *value = find_env_p(id, env);
+
 		while (value && *value)
 			new_string(new, *(value++));
 	}
@@ -66,6 +71,8 @@ void replace_value(t_string **new, t_string **str, t_env *env, int e)
 /**
  * change_value - change the string to it's new value.
  * @str: the string.
+ * @env: env
+ * @e: exit status.
  * Return: the new value of str.
  */
 
@@ -95,6 +102,8 @@ t_string *change_value(t_string *str, t_env *env, int e)
 /**
  * expand - expand.
  * @str: string to expand.
+ * @env: env
+ * @e: exit status.
  * Return: the new string.
  */
 

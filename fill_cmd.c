@@ -52,7 +52,6 @@ void split_lexer(t_lexer **head, t_string *str)
 		}
 		if (save)
 			new_lexer(head, save, STR);
-		
 	}
 }
 
@@ -61,6 +60,8 @@ void split_lexer(t_lexer **head, t_string *str)
  * @lexer: my lexer.
  * @pip: if pipe after cmd.
  * @smc: if smc after cmd.
+ * @env: env
+ * @e: exit status.
  * Return: lexer of new_cmd.
  */
 
@@ -68,7 +69,7 @@ t_lexer *new_cmd(t_lexer **lexer, bool *pip, bool *smc, t_env *env, int e)
 {
 	t_lexer *head = NULL;
 	t_string *str;
-	
+
 	*smc = false;
 	*pip = false;
 	while (*lexer && (*lexer)->type == STR)
@@ -92,6 +93,8 @@ t_lexer *new_cmd(t_lexer **lexer, bool *pip, bool *smc, t_env *env, int e)
  * @lexer: my lexer.
  * @pip: if pipe after cmd.
  * @smc: if smc after cmd.
+ * @env: env
+ * @e: exit status.
  * Return: 2d arr to the cmd.
  */
 

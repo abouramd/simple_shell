@@ -21,7 +21,7 @@ void new_env(t_env **head, char *value, char *key)
 	if (value)
 		node->value = strdup(value);
 	else
-	 	node->value = NULL;
+		node->value = NULL;
 	node->next = NULL;
 	if (!*head)
 	{

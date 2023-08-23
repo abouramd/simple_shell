@@ -52,9 +52,11 @@ static void *save_addr(size_t size, bool clear)
 	}
 	else if (size)
 	{
-		if (!(ptr = malloc(size)))
+		ptr = malloc(size);
+		if (!ptr)
 			return (NULL);
-		if (!(new = malloc(sizeof(t_alloc))))
+		new = malloc(sizeof(t_alloc));
+		if (!new)
 		{
 			free(ptr);
 			return (NULL);
