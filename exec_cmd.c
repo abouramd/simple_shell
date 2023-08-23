@@ -49,7 +49,7 @@ int exec_cmd(char **cmd, t_env *genv)
 {
 	int ret = 0, flag = 0, status = 0;
 	pid_t id;
-	char *comand;
+	char *comand = NULL;
 
 	if (cmd[0][0] != '/' && cmd[0][0] != '.')
 	{
@@ -59,10 +59,9 @@ int exec_cmd(char **cmd, t_env *genv)
 	if (!comand || access(comand, F_OK) == -1)
 	{
 		if (errno == EACCES)
-			ret = 126;
+			exit(126);
 		else
-			ret = 127;
-		perror(NULL);
+			exit(127);
 	}
 	else
 	{
@@ -77,9 +76,10 @@ int exec_cmd(char **cmd, t_env *genv)
 		if (id == 0)
 		{
 			execve(comand, cmd, list_to_env(genv));
+			perror(NULL);
 			if (errno == EACCES)
-				ret = 126;
-			 exit(ret);
+			 	exit(126);
+			exit(1);
 		}
 		else
 		{

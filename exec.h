@@ -6,7 +6,6 @@
 #include <linux/limits.h>
 #include <sys/stat.h>
 #include <errno.h>
-#include <bsd/string.h>
 
 
 typedef struct builtin_struct
@@ -16,10 +15,11 @@ typedef struct builtin_struct
 }t_built;
 
 	
-int exec(t_lexer *ptr, t_env *genv);
+void exec(t_lexer *ptr, t_env *genv, int *status);
 int is_builtin(char *cmd);
 
-	
+int	ft_atoi(const char *str);
+
 void newnode(char *k, char *v, t_env **genv);
 void delete_node(char *k, t_env **genv);
 char **list_to_env(t_env *genv);

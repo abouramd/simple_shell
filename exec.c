@@ -21,19 +21,17 @@ int is_builtin(char *cmd)
  * Return: 0 on sucess otherwise error number
  */
 
-int exec(t_lexer *ptr, t_env *genv)
+void exec(t_lexer *ptr, t_env *genv, int *status)
 {
 	char **cmd;
 	bool pip;
 	bool sim;
-	int ret;
 
 	cmd = fill_cmd(&ptr, &pip, &sim);
 	if (is_builtin(cmd[0]))
 	{
-		ret = builtin(cmd, &genv);
+		*status = builtin(cmd, &genv);
 	}
 	else
-		ret = exec_cmd(cmd, genv);
-	return (ret);
+		*status = exec_cmd(cmd, genv);
 }
