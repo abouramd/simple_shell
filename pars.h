@@ -42,11 +42,11 @@ typedef struct s_lexer {
 
 t_lexer *lexer(t_getline* line);
 
-char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc);
+char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc, int e, t_env *env);
 
 void new_string(t_string **head, char c);
 
-t_string *expand(t_string *str);
+t_string *expand(t_string *str, t_env *env, int e);
 
 t_env *fill_env(char **env);
 

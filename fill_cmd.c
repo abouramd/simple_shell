@@ -1,4 +1,5 @@
 #include "pars.h"
+#include "shell.h"
 
 size_t string_size(t_string *ptr)
 {
@@ -74,7 +75,7 @@ void split_lexer(t_lexer **head, t_string *str)
 	}
 }
 
-t_lexer *new_cmd(t_lexer **lexer, bool *pip, bool *smc)
+t_lexer *new_cmd(t_lexer **lexer, bool *pip, bool *smc, t_env *env, int e)
 {
 	t_lexer *head = NULL;
 	t_string *str;
@@ -83,7 +84,7 @@ t_lexer *new_cmd(t_lexer **lexer, bool *pip, bool *smc)
 	*pip = false;
 	while (*lexer && (*lexer)->type == STR)
 	{
-		str = expand((*lexer)->content);
+		str = expand((*lexer)->content, env, e);
 		/* cmd[index++] = convert_string((*lexer)->content); */
 		split_lexer(&head, str);
 		*lexer = (*lexer)->next;
@@ -98,14 +99,14 @@ t_lexer *new_cmd(t_lexer **lexer, bool *pip, bool *smc)
 }
 
 
-char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc)
+char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc, int e, t_env *env)
 {
 	char **cmd;
 	t_lexer *head = NULL;
 	size_t size;
 	size_t index = 0;
 
-	head = new_cmd(lexer, pip, smc);
+	head = new_cmd(lexer, pip, smc, env, e);
 	size = cmd_size(head);
 	cmd = my_malloc(sizeof(char *) * (size + 1));
 	if (!cmd)

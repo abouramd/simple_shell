@@ -20,4 +20,5 @@ typedef struct s_env {
 
 
 char *find_env(char *s);
+char *find_env_p(char *s, t_env *env);
 #endif

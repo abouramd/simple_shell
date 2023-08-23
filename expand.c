@@ -18,14 +18,14 @@ char *get_id(t_string **str)
 	return (s);
 }
 
-void replace_value(t_string **new, t_string **str)
+void replace_value(t_string **new, t_string **str, t_env *env, int e)
 {
 	(*str) = (*str)->next;
 	if (!*str)
 		new_string(new, '$');
 	else if ((*str)->c == '?')
 	{
-		char *s = itoa(255);/* replace 255 with the exit status */
+		char *s = itoa(e);/* replace 255 with the exit status */
 		while (s && *s)
 			new_string(new, *(s++));
 		(*str) = (*str)->next;
@@ -40,14 +40,14 @@ void replace_value(t_string **new, t_string **str)
 	else if (isalpha((*str)->c) || (*str)->c == '_')
 	{
 		char *id = get_id(str);
-		char *value = find_env(id);
+		char *value = find_env_p(id, env);
 		while (value && *value)
 			new_string(new, *(value++));
 	}
 }
 
 
-t_string *change_value(t_string *str)
+t_string *change_value(t_string *str, t_env *env, int e)
 {
 	char qout = 0;
 	t_string *new = NULL;
@@ -60,7 +60,7 @@ t_string *change_value(t_string *str)
 			qout = 0;
 		if (qout != '\'' && str->c == '$')
 		{
-			replace_value(&new, &str);
+			replace_value(&new, &str, env, e);
 			continue;
 		}
 		else
@@ -70,7 +70,7 @@ t_string *change_value(t_string *str)
 	return (new);
 }
 
-t_string *expand(t_string *str)
+t_string *expand(t_string *str, t_env *env, int e)
 {
-	return (change_value(str));
+	return (change_value(str, env, e));
 }

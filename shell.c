@@ -5,9 +5,22 @@
 #include <stdio.h>
 #include <unistd.h>
 
-t_env *genv;
 void exec(t_lexer *ptr, t_env *genv, int *status);
 
+t_env *genv;
+char *find_env_p(char *s, t_env *env)
+{
+	t_env *tmp;
+
+	tmp = env;
+	while (tmp)
+	{
+		if (!strcmp(tmp->key, s))
+			return (tmp->value);
+		tmp = tmp->next;
+	}
+	return NULL;
+}
 
 char *find_env(char *s)
 {
@@ -53,7 +66,7 @@ void cmd_print(t_lexer *ptr)
 	while (ptr)
 	{
 		printf("----------------------\n");
-		cmd = fill_cmd(&ptr, &pip, &smc);
+		cmd = fill_cmd(&ptr, &pip, &smc, 0, NULL);
 		printf("pip = %s\n", pip?"true":"false");
 		printf("smc = %s\n", smc?"true":"false");
 		while (cmd && *cmd)
@@ -90,7 +103,7 @@ int main(int ac, char **av, char **env)
 		write(1, "prompt >> ", 10);
 		l.characters = getline(&l.buffer,&l.bufsize,stdin);
 		if (l.characters == -1)
-			return (free_env(&genv), free(l.buffer), 0); /* replace 0 with the exit status*/
+			return (free_env(&genv), free(l.buffer), status); /* replace 0 with the exit status*/
 		x = lexer(&l);
 		exec(x, genv, &status);
 		/* lexer_print(x); */
