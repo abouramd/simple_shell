@@ -78,7 +78,7 @@ int exec_cmd(char **cmd, t_env *genv)
 			execve(comand, cmd, list_to_env(genv));
 			perror(NULL);
 			if (errno == EACCES)
-			 	exit(126);
+				exit(126);
 			exit(1);
 		}
 		else

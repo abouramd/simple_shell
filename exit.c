@@ -10,13 +10,13 @@ int numdigit(char *num)
 	int i;
 
 	i = 0;
-	if(num[i] && (num[i] == '-' || num[i] == '+'))
+	if (num[i] && (num[i] == '-' || num[i] == '+'))
 		i++;
-	while(num[i] && num[i] >= '0' && num[i] <= '9')
+	while (num[i] && num[i] >= '0' && num[i] <= '9')
 	{
 		i++;
 	}
-	return(-1);
+	return (-1);
 }
 
 /**

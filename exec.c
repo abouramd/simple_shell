@@ -18,6 +18,7 @@ int is_builtin(char *cmd)
  * exec - base function to run builtin and regulare command
  * @ptr: first argument
  * @genv: second argumnet
+ * @status: third argumnet
  * Return: 0 on sucess otherwise error number
  */
 
