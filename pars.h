@@ -76,4 +76,8 @@ char *itoa(long num);
 
 void free_env(t_env **env);
 
+char *convert_string(t_string *s);
+
+size_t string_size(t_string *ptr);
+
 #endif
