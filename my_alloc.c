@@ -1,5 +1,11 @@
 #include "my_alloc.h"
 
+/**
+ * free_alloc - free data.
+ * @ptr: pointer to the first node in list.
+ * Return: no return value.
+ */
+
 static void free_alloc(t_alloc *ptr)
 {
 	if (ptr)
@@ -10,6 +16,13 @@ static void free_alloc(t_alloc *ptr)
 	}
 }
 
+/**
+ * add_alloc - add new addr in the list.
+ * @ptr: the list.
+ * @new: the new node.
+ * Return: no return value.
+ */
+
 static void add_alloc(t_alloc **ptr, t_alloc *new)
 {
 	if (ptr && new)
@@ -18,6 +31,13 @@ static void add_alloc(t_alloc **ptr, t_alloc *new)
 		*ptr = new;
 	}
 }
+
+/**
+ * save_addr - manage memory.
+ * @size: size to alloc.
+ * @clear: free data.
+ * Return: void * to  the addr.
+ */
 
 static void *save_addr(size_t size, bool clear)
 {
@@ -47,22 +67,24 @@ static void *save_addr(size_t size, bool clear)
 	return (ptr);
 }
 
+/**
+ * my_malloc - alloc new mem.
+ * @size: size of mem to alloc.
+ * Return: pointer to the mem.
+ */
+
 void *my_malloc(size_t size)
 {
 	return (save_addr(size, false));
 }
+
+/**
+ * my_free - free all data.
+ * Return: no return value.
+ */
 
 void my_free(void)
 {
 	save_addr(0, true);
 }
 
-/* int main(void)
-{
-	my_malloc(1000);
-	my_malloc(1000);
-	my_malloc(1000);
-	my_malloc(1000);
-	my_free();
-	return EXIT_SUCCESS;
-} */

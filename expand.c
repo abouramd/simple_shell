@@ -3,6 +3,12 @@
 #include <ctype.h>
 #include <unistd.h>
 
+/**
+ * get_id - get the id of the var
+ * @str: the data o var
+ * Return: the string content var name
+ */
+
 char *get_id(t_string **str)
 {
 	t_string	*save = (*str);
@@ -17,6 +23,13 @@ char *get_id(t_string **str)
 	(*str) = tmp;
 	return (s);
 }
+
+/**
+ * replace_value - replace the value of the var name
+ * @new: the new string
+ * @str: old string.
+ * Return: no return value.
+ */
 
 void replace_value(t_string **new, t_string **str, t_env *env, int e)
 {
@@ -46,6 +59,11 @@ void replace_value(t_string **new, t_string **str, t_env *env, int e)
 	}
 }
 
+/**
+ * change_value - change the string to it's new value.
+ * @str: the string.
+ * Return: the new value of str.
+ */
 
 t_string *change_value(t_string *str, t_env *env, int e)
 {
@@ -69,6 +87,12 @@ t_string *change_value(t_string *str, t_env *env, int e)
 	}
 	return (new);
 }
+
+/**
+ * expand - expand.
+ * @str: string to expand.
+ * Return: the new string.
+ */
 
 t_string *expand(t_string *str, t_env *env, int e)
 {

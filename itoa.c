@@ -1,5 +1,11 @@
 #include "pars.h"
 
+/**
+ * itoa - convert a number to string.
+ * @num: the number.
+ * Return: the number in string.
+ */
+
 char *itoa(long num)
 {
 	unsigned long nbr;
