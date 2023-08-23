@@ -1,5 +1,12 @@
 #include "exec.h"
 
+/**
+ *get_path - function to get executable path from env
+ *@cmd: command to find ther path
+ *@genv: env to find path for exeutable
+ * Return: return executable path if found otherwise NULL
+ */
+
 char *get_path(char *cmd, t_env *genv)
 {
 	int i;
@@ -7,14 +14,14 @@ char *get_path(char *cmd, t_env *genv)
 	char **paths;
 	char *comand;
 	char *path;
+
 	(void)genv;
 	path = find_env("PATH");
 	if (!path || !(*path))
 		return (NULL);
 	paths = ft_split(path, ':');
-	
 	i = 0;
-	while(paths[i])
+	while (paths[i])
 	{
 		comand = malloc(strlen(paths[i]) + strlen(cmd) + 3);
 		strcpy(comand, paths[i]);
@@ -31,12 +38,19 @@ char *get_path(char *cmd, t_env *genv)
 	return (NULL);
 }
 
+/**
+ * exec_cmd -  function to execute regulare command
+*@cmd: command to execute with opetion
+*@genv: env passed as parameter
+*Return: 0 on Success otherwise error number
+*/
+
 int exec_cmd(char **cmd, t_env *genv)
 {
-	int ret = 0, flag = 0;
+	int ret = 0, flag = 0, status = 0;
 	pid_t id;
-	int status;
 	char *comand;
+
 	if (cmd[0][0] != '/' && cmd[0][0] != '.')
 	{
 		flag = 1;
@@ -58,15 +72,13 @@ int exec_cmd(char **cmd, t_env *genv)
 			if (flag)
 				free(comand);
 			perror("fork fail");
-			return 1;
+			return (1);
 		}
 		if (id == 0)
 		{
-			char **env = list_to_env(genv);
-			execve(comand, cmd, env);
+			execve(comand, cmd, list_to_env(genv));
 			if (errno == EACCES)
 				ret = 126;
-			 free_matrix(env);
 			 exit(ret);
 		}
 		else

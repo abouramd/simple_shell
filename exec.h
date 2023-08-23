@@ -1,8 +1,8 @@
 #ifndef EXEC_H
 #define EXEC_H
 
-#include "../pars.h"
-#include "../shell.h"
+#include "pars.h"
+#include "shell.h"
 #include <linux/limits.h>
 #include <sys/stat.h>
 #include <errno.h>
@@ -16,7 +16,7 @@ typedef struct builtin_struct
 }t_built;
 
 	
-void exec(t_lexer *ptr, t_env *genv);
+int exec(t_lexer *ptr, t_env *genv);
 int is_builtin(char *cmd);
 
 	
@@ -52,6 +52,5 @@ char *get_path(char *cmd, t_env *genv);
 
 int ft_exit(char **cmd, t_env **genv);
 
-int _alias(char **cmd, t_env **genv);
 
 #endif
