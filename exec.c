@@ -8,6 +8,8 @@
 
 int is_builtin(char *cmd)
 {
+	if (!cmd)
+		return (0);
 	if (!strcmp(cmd, "exit") || !strcmp(cmd, "setenv") || !strcmp(cmd, "env")
 		|| !strcmp(cmd, "unsetenv") || !strcmp(cmd, "alias") || !strcmp(cmd, "cd"))
 		return (1);
