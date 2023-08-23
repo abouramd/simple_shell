@@ -1,11 +1,23 @@
 #include "pars.h"
 
+/**
+ * string_size - count string size.
+ * @ptr: the string.
+ * Return: size of the string.
+ */
+
 size_t string_size(t_string *ptr)
 {
 	if (!ptr)
 		return (0);
 	return (string_size(ptr->next) + 1);
 }
+
+/**
+ * convert_string - t_string to char *.
+ * @s: t_string data.
+ * Return: char * content the string data.
+ */
 
 char *convert_string(t_string *s)
 {
@@ -32,6 +44,12 @@ char *convert_string(t_string *s)
 	return (str);
 }
 
+/**
+ * cmd_size - count cmd size.
+ * @lexer: the leaxer.
+ * Return: size of lexer.
+ */
+
 size_t cmd_size(t_lexer *lexer)
 {
 	size_t count = 0;
@@ -43,6 +61,13 @@ size_t cmd_size(t_lexer *lexer)
 	}
 	return (count);
 }
+
+/**
+ * split_lexer - fill the lexer from command.
+ * @head: head of lexer.
+ * @str: the string in the lexer.
+ * Return: void.
+ */
 
 void split_lexer(t_lexer **head, t_string *str)
 {
@@ -70,15 +95,22 @@ void split_lexer(t_lexer **head, t_string *str)
 		}
 		if (save)
 			new_lexer(head, save, STR);
-		
 	}
 }
+
+/**
+ * new_cmd - creat a new cmd.
+ * @lexer: my lexer.
+ * @pip: if pipe after cmd.
+ * @smc: if smc after cmd.
+ * Return: lexer of new_cmd.
+ */
 
 t_lexer *new_cmd(t_lexer **lexer, bool *pip, bool *smc)
 {
 	t_lexer *head = NULL;
 	t_string *str;
-	
+
 	*smc = false;
 	*pip = false;
 	while (*lexer && (*lexer)->type == STR)
@@ -97,6 +129,13 @@ t_lexer *new_cmd(t_lexer **lexer, bool *pip, bool *smc)
 	return (head);
 }
 
+/**
+ * fill_cmd - fill cmd in 2d arr.
+ * @lexer: my lexer.
+ * @pip: if pipe after cmd.
+ * @smc: if smc after cmd.
+ * Return: 2d arr to the cmd.
+ */
 
 char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc)
 {
@@ -117,3 +156,5 @@ char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc)
 	}
 	return (cmd);
 }
+
+
