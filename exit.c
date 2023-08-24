@@ -11,7 +11,7 @@ int numdigit(char *num)
 	int flg = 0;
 
 	i = 0;
-	if (num[i] && (num[i] == '-' || num[i] == '+'))
+	if (num[i] && num[i] == '+')
 		i++;
 	while (num[i] && num[i] >= '0' && num[i] <= '9')
 	{
@@ -33,9 +33,9 @@ int ft_exit(char **cmd, t_env **genv, int status)
 {
 	(void)genv;
 
-	free_env(genv);
 	if (!cmd[1])
 	{
+		free_env(genv);
 		my_free();
 		exit(status);
 	}
@@ -43,15 +43,16 @@ int ft_exit(char **cmd, t_env **genv, int status)
 	{
 		int e;
 
+		free_env(genv);
 		e = ft_atoi(cmd[1]);
 		my_free();
 		exit(e);
 	}
 	else
 	{
+		write(2, "sh: 1: exit: Illegal number: ", 28);
 		write(2, cmd[1], strlen(cmd[1]));
-		write(2, ": numeric argument required\n", 28);
+		write(2, "\n", 1);
 	}
-	my_free();
-	exit(255);
+	return (2);
 }
