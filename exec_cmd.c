@@ -51,18 +51,21 @@ int exec_cmd(char **cmd, t_env *genv)
 	pid_t id;
 	char *comand = cmd[0];
 
-	if (comand && comand[0] != '/' && comand[0] != '.')
+	if (comand && strchr(comand, '/') && comand[0] != '.')
 	{
 		flag = 1;
 		comand = get_path(cmd[0], genv);
 	}
 	if (!comand || access(comand, F_OK) == -1)
 	{
+		write (2, "./hsh: 1: ", 10);
+		if (comand)
+			write (2, comand, strlen(comand));
 		if (errno == EACCES)
 			ret = 126;
 		else
 			ret = 127;
-		perror(NULL);
+		write (2, " : not found\n", 13);
 	}
 	else
 	{
