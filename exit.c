@@ -36,7 +36,6 @@ int ft_exit(char **cmd, t_env **genv)
 	free_env(genv);
 	if (!cmd[1])
 	{
-		write(1, "exit\n", 5);
 		my_free();
 		exit(0);
 	}
@@ -44,14 +43,12 @@ int ft_exit(char **cmd, t_env **genv)
 	{
 		int e;
 
-		write(1, "exit\n", 5);
 		e = ft_atoi(cmd[1]);
 		my_free();
 		exit(e);
 	}
 	else
 	{
-		write(2, "exit\n", 5);
 		write(2, cmd[1], strlen(cmd[1]));
 		write(2, ": numeric argument required\n", 28);
 	}
