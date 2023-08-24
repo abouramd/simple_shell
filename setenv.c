@@ -4,6 +4,7 @@
  * _setenv - function to add env variable to env
  * @cmd: variable to add to env
  * @genv: env passed as parameter
+ * @status: third parameter
  *Return: 0 on success otherwise 1
 */
 

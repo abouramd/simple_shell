@@ -57,10 +57,10 @@ int exec_cmd(char **cmd, t_env *genv)
 		comand = get_path(cmd[0], genv);
 		if (!comand)
 		{
-			write (2, "./hsh: 1: ", 10);
+			write(2, "./hsh: 1: ", 10);
 			if (cmd && cmd[0])
-				write (2, cmd[0], strlen(cmd[0]));
-			write (2, ": not found\n", 12);
+				write(2, cmd[0], strlen(cmd[0]));
+			write(2, ": not found\n", 12);
 		}
 	}
 	if (!comand || access(comand, F_OK) == -1)

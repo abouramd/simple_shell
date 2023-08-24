@@ -19,7 +19,7 @@ void newnode(char *k, char *v, t_env **genv)
 	if (!head)
 	{
 		*genv = node;
-		return ;
+		return;
 	}
 	while (head->next)
 	{
@@ -46,7 +46,7 @@ void replace_env(char *k, char *v, t_env *genv)
 		{
 			free(head->value);
 			head->value = strdup(v);
-			return ;
+			return;
 		}
 		head = head->next;
 	}

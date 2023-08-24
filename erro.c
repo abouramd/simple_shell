@@ -23,3 +23,4 @@ int erro(char *str, int flag)
 	}
 	return (0);
 }
+

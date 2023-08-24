@@ -27,6 +27,7 @@ int numdigit(char *num)
  * ft_exit - builtin function to exit the programe with error number
  * @cmd: first argument
  * @genv: second argumnet
+ * @status: third parameter
  * Return: the number hold by cmd[1]
 */
 int ft_exit(char **cmd, t_env **genv, int status)

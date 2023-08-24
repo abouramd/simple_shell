@@ -4,6 +4,7 @@
  * _env - builtin function to print env
  * @cmd: first argument
  * @genv: env passed as parameter
+ * @status: third parameter
  * Return: 0 on Success otherwise error number
  */
 int _env(char **cmd, t_env **genv, int status)

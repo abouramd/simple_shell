@@ -8,6 +8,12 @@
 #include <errno.h>
 
 
+/**
+ * struct builtin_struct - struct to hold builtin function
+ * @builtin: first argumnet
+ * @func: second argumnet
+ */
+
 typedef struct builtin_struct
 {
 	char *builtin;
