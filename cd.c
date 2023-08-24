@@ -90,6 +90,12 @@ int _cd(char **cmd, t_env **genv, int status)
 	else
 	{
 		ret = chdir(find_env("OLDPWD"));
+		if (ret != 0)
+		{
+			perror(NULL);
+			return (1);
+		}
+		printf("%s\n", find_env("OLDPWD"));
 		update_oldpwd(buf, genv);
 		update_pwd(&genv);
 		return (ret);
