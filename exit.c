@@ -43,14 +43,13 @@ int ft_exit(char **cmd, t_env **genv, int status)
 	{
 		int e;
 
-		free_env(genv);
 		e = ft_atoi(cmd[1]);
 		my_free();
 		exit(e);
 	}
 	else
 	{
-		write(2, "sh: 1: exit: Illegal number: ", 29);
+		write(2, "./hsh: 1: exit: Illegal number: ", 32);
 		write(2, cmd[1], strlen(cmd[1]));
 		write(2, "\n", 1);
 	}
