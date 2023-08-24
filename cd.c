@@ -80,7 +80,9 @@ int _cd(char **cmd, t_env **genv, int status)
 		ret = chdir(cmd[1]);
 		if (ret != 0)
 		{
-			perror(NULL);
+			write(2, "./hsh: 1: cd: can't cd to ", 26);
+			write(2, cmd[1], strlen(cmd[1]));
+			write(2, "\n", 1);
 			return (1);
 		}
 		update_oldpwd(buf, genv);
