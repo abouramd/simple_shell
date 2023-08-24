@@ -12,7 +12,7 @@ int _setenv(char **cmd, t_env **genv, int status)
 	(void) status;
 	if (!cmd[1] || !cmd[2])
 	{
-		perror("Number Of Argument Not Valid");
+		write(2, "Number Of Argument Not Valid\n", 29);
 		return (1);
 	}
 	if (!find_env_p(cmd[1], *genv))
