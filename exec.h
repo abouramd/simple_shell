@@ -11,7 +11,7 @@
 typedef struct builtin_struct
 {
 	char *builtin;
-	int (*func)(char **cmd, t_env **genv);
+	int (*func)(char **cmd, t_env **genv, int status);
 }	t_built;
 
 void exec(t_lexer *ptr, t_env **genv, int *status);
@@ -27,17 +27,17 @@ char **free_matrix(char **str);
 
 void update_pwd(t_env ***genv);
 void update_oldpwd(char *v, t_env **genv);
-int _cd(char **cmd, t_env **genv);
+int _cd(char **cmd, t_env **genv, int status);
 
 
-int _env(char **cmd, t_env **genv);
+int _env(char **cmd, t_env **genv, int status);
 
-int builtin(char **cmd, t_env **genv);
+int builtin(char **cmd, t_env **genv, int status);
 
 
-int _setenv(char **cmd, t_env **genv);
+int _setenv(char **cmd, t_env **genv, int status);
 
-int _unsetenv(char **cmd, t_env **genv);
+int _unsetenv(char **cmd, t_env **genv, int status);
 
 
 char	**ft_split(char *s, char c);
@@ -47,7 +47,7 @@ int exec_cmd(char **cmd, t_env *genv);
 char *get_path(char *cmd, t_env *genv);
 
 
-int ft_exit(char **cmd, t_env **genv);
+int ft_exit(char **cmd, t_env **genv, int status);
 
 
 #endif

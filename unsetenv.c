@@ -7,8 +7,9 @@
  * Return: 0 on Success otherwise 1
  */
 
-int _unsetenv(char **cmd, t_env **genv)
+int _unsetenv(char **cmd, t_env **genv, int status)
 {
+	(void) status;
 	if (!cmd[1])
 	{
 		perror("Number Of Argument Not Valid");

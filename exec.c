@@ -35,7 +35,7 @@ void exec(t_lexer *ptr, t_env **genv, int *status)
 		cmd = fill_cmd(&ptr, &pip, &sim, *status, *genv);
 		if (is_builtin(cmd[0]))
 		{
-			*status = builtin(cmd, genv);
+			*status = builtin(cmd, genv, *status);
 		}
 		else
 			*status = exec_cmd(cmd, *genv);

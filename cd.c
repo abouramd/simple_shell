@@ -56,11 +56,12 @@ void update_oldpwd(char *v, t_env **genv)
  *  Return: 0 on success otherwise error number
  */
 
-int _cd(char **cmd, t_env **genv)
+int _cd(char **cmd, t_env **genv, int status)
 {
 	char buf[PATH_MAX];
 	int ret = 1;
 
+	(void) status;
 	getcwd(buf, PATH_MAX);
 	if (!cmd[1])
 	{

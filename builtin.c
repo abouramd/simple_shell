@@ -6,7 +6,7 @@
  *@genv:  second argument
  * Return: return 0 on success otherwise return error
  */
-int builtin(char **cmd, t_env **genv)
+int builtin(char **cmd, t_env **genv, int status)
 {
 	t_built builtin[] = {
 		{"exit", ft_exit},
@@ -22,7 +22,7 @@ int builtin(char **cmd, t_env **genv)
 	{
 		if (!strcmp(builtin[i].builtin, cmd[0]))
 		{
-			return (builtin[i].func(cmd, genv));
+			return (builtin[i].func(cmd, genv, status));
 		}
 	}
 	return (0);

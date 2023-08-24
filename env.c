@@ -6,9 +6,10 @@
  * @genv: env passed as parameter
  * Return: 0 on Success otherwise error number
  */
-int _env(char **cmd, t_env **genv)
+int _env(char **cmd, t_env **genv, int status)
 {
 	t_env *head = (*genv);
+	(void) status;
 	(void)cmd;
 	if (!head)
 		return (-2);

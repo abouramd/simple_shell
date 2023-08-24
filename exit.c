@@ -29,7 +29,7 @@ int numdigit(char *num)
  * @genv: second argumnet
  * Return: the number hold by cmd[1]
 */
-int ft_exit(char **cmd, t_env **genv)
+int ft_exit(char **cmd, t_env **genv, int status)
 {
 	(void)genv;
 
@@ -37,7 +37,7 @@ int ft_exit(char **cmd, t_env **genv)
 	if (!cmd[1])
 	{
 		my_free();
-		exit(0);
+		exit(status);
 	}
 	else if (numdigit(cmd[1]) == 0)
 	{
