@@ -16,6 +16,11 @@ void newnode(char *k, char *v, t_env **genv)
 	node->key = strdup(k);
 	node->value = strdup(v);
 	node->next = NULL;
+	if (!head)
+	{
+		*genv = node;
+		return ;
+	}
 	while (head->next)
 	{
 		head = head->next;
