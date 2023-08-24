@@ -34,16 +34,15 @@ void newnode(char *k, char *v, t_env **genv)
 void replace_env(char *k, char *v, t_env *genv)
 {
 	t_env *head = genv;
+	t_env *tmp = NULL;
 
 	while (head->next)
 	{
 		if (!strcmp(head->key, k))
-		{
-			head->value = strdup(v);
-			return;
-		}
+			tmp = head;
 		head = head->next;
 	}
+	tmp->value = strdup(v);
 }
 
 /**
