@@ -137,7 +137,11 @@ int main(int ac, char **av, char **env)
 		l.buffer = NULL;
 		l.characters = getline(&l.buffer, &l.bufsize, fptr);
 		if (l.characters == -1)
+		{
+			if (ac == 2)
+				fclose(fptr);
 			return (free_env(&genv), free(l.buffer), status);
+		}
 		x = lexer(&l);
 		free(l.buffer); /* free buffer */
 		exec(x, &genv, &status);
