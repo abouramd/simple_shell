@@ -50,9 +50,30 @@ void update_oldpwd(char *v, t_env **genv)
 }
 
 /**
+ * chnge_dir - function to change directory
+ * @str: first parameter
+ * @cwd: second parameter
+ * @genv: third parameter
+ * Return: error Number
+ */
+
+int chnge_dir(char *str, char *cwd, t_env **genv)
+{
+	int ret = 0;
+
+	ret = chdir(str);
+	if (ret != 0)
+		return (erro(str, 1));
+	update_oldpwd(cwd, genv);
+	update_pwd(&genv);
+	return (ret);
+}
+
+/**
  * _cd - builtin function to change current directory
  * @cmd: command line with option passed as parameter
- *  @genv: env passed as parameter
+ * @genv: env passed as parameter
+ * @status: third parameter
  *  Return: 0 on success otherwise error number
  */
 
@@ -76,31 +97,20 @@ int _cd(char **cmd, t_env **genv, int status)
 	else if (cmd[1] && cmd[2])
 		return (erro(NULL, 2));
 	else if (cmd[1] && strcmp(cmd[1], "-") != 0)
+		return (chnge_dir(cmd[1], buf, genv));
+	p = find_env_p("OLDPWD", *genv);
+	if (!p)
 	{
-		ret = chdir(cmd[1]);
-		if (ret != 0)
-			return (erro(cmd[1], 1));
-		update_oldpwd(buf, genv);
-		update_pwd(&genv);
-		return (ret);
+		p = getcwd(NULL, 0);
+		puts(p);
+		free(p);
+		return (0);
 	}
-	else
-	{
-		p = find_env_p("OLDPWD", *genv);
-		if (!p)
-		{
-			p = getcwd(NULL, 0);
-			puts(p);
-			free(p);
-			return (0);
-		}
-		ret = chdir(p);
-		if (ret != 0)
-			return (erro(p, 1));
-		printf("%s\n", find_env("OLDPWD"));
-		update_oldpwd(buf, genv);
-		update_pwd(&genv);
-		return (ret);
-	}
-
+	ret = chdir(p);
+	if (ret != 0)
+		return (erro(p, 1));
+	printf("%s\n", find_env("OLDPWD"));
+	update_oldpwd(buf, genv);
+	update_pwd(&genv);
+	return (ret);
 }

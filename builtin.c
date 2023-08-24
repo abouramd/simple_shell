@@ -4,6 +4,7 @@
  * builtin - function to call apropriate builtin function
  *@cmd: first argument
  *@genv:  second argument
+ * @status: third argumnet
  * Return: return 0 on success otherwise return error
  */
 int builtin(char **cmd, t_env **genv, int status)
