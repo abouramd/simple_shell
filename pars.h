@@ -10,7 +10,8 @@
  * @SMC: ; type.
  */
 
-typedef enum s_type {
+typedef enum s_type
+{
 	STR,
 	PIP,
 	SMC
@@ -22,7 +23,8 @@ typedef enum s_type {
  * @next: thr next char.
  */
 
-typedef struct s_string {
+typedef struct s_string
+{
 	char c;
 	struct s_string *next;
 } t_string;
@@ -34,7 +36,8 @@ typedef struct s_string {
  * @bufsize: the size of the buffer
  */
 
-typedef struct s_getline {
+typedef struct s_getline
+{
 	ssize_t	characters;
 	char	*buffer;
 	size_t	bufsize;
@@ -46,7 +49,8 @@ typedef struct s_getline {
  * @type: the type of the token
  */
 
-typedef struct s_lexer {
+typedef struct s_lexer
+{
 	t_type type;
 	t_string *content;
 	struct s_lexer *next;
