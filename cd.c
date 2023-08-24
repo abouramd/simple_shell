@@ -95,7 +95,10 @@ int _cd(char **cmd, t_env **genv, int status)
 	}
 	else
 	{
-		ret = chdir(find_env("OLDPWD"));
+		p = find_env_p("OLDPWD", *genv);
+		if (!p)
+			return (0);
+		ret = chdir(p);
 		if (ret != 0)
 		{
 			perror(NULL);
