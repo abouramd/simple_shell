@@ -58,6 +58,7 @@ void update_oldpwd(char *v, t_env **genv)
 
 int _cd(char **cmd, t_env **genv, int status)
 {
+	char *p;
 	char buf[PATH_MAX];
 	int ret = 1;
 
@@ -65,9 +66,10 @@ int _cd(char **cmd, t_env **genv, int status)
 	getcwd(buf, PATH_MAX);
 	if (!cmd[1])
 	{
-		ret = chdir(find_env_p("HOME", *genv));
-		if (ret != 0)
+		p = chdir(find_env_p("HOME", *genv));
+		if (!p)
 			return (0);
+		ret = chdir(p);
 		update_pwd(&genv);
 		update_oldpwd(buf, genv);
 		return (ret);
