@@ -17,5 +17,7 @@ int _setenv(char **cmd, t_env **genv, int status)
 	}
 	if (!find_env_p(cmd[1], *genv))
 		newnode(cmd[1], cmd[2], genv);
+	else
+		replace_env(cmd[1], cmd[2], *genv);
 	return (0);
 }

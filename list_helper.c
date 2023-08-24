@@ -13,14 +13,37 @@ void newnode(char *k, char *v, t_env **genv)
 	t_env *head = *genv;
 	t_env *node = malloc(sizeof(t_env));
 
-	node->key = malloc(strlen(k) + 1);
-	node->value = malloc(strlen(v) + 1);
+	node->key = strdup(k);
+	node->value = strdup(v);
 	node->next = NULL;
 	while (head->next)
 	{
 		head = head->next;
 	}
 	head->next = node;
+}
+
+/**
+ * replace_env - function to create and add node to env
+ *  @k: first argumnet
+ *  @v: second argumnet
+ *  @genv: third argumnet
+ * Return: void
+*/
+
+void replace_env(char *k, char *v, t_env *genv)
+{
+	t_env *head = genv;
+
+	while (head->next)
+	{
+		if (!strcmp(head->key, k))
+		{
+			head->value = strdup(v);
+			return;
+		}
+		head = head->next;
+	}
 }
 
 /**

@@ -20,6 +20,7 @@ int is_builtin(char *cmd);
 int	ft_atoi(const char *str);
 
 void newnode(char *k, char *v, t_env **genv);
+void replace_env(char *k, char *v, t_env *genv);
 void delete_node(char *k, t_env **genv);
 char **list_to_env(t_env *genv);
 char **free_matrix(char **str);
