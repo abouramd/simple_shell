@@ -101,6 +101,8 @@ t_lexer *lexer(t_getline *line)
 		while (i < line->characters && (line->buffer[i] == ' '
 			|| line->buffer[i] == '\t' || line->buffer[i] == '\n'))
 			i++;
+		if (line->buffer[i] == '#')
+			break;
 		if (i == line->characters)
 			break;
 		while (i < line->characters)
