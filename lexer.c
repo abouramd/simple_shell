@@ -1,5 +1,12 @@
 #include "pars.h"
 
+/**
+ * new_string - new node of string.
+ * @head: the head of the linked list.
+ * @c: the content of the node.
+ * Return: no return value.
+ */
+
 void new_string(t_string **head, char c)
 {
 	t_string *str;
@@ -20,6 +27,14 @@ void new_string(t_string **head, char c)
 		s = str;
 	}
 }
+
+/**
+ * new_lexer - new node of lexer.
+ * @head: the head of the linked list.
+ * @c: the content of the node.
+ * @type: the type of the content.
+ * Return: no return value.
+ */
 
 void new_lexer(t_lexer **head, t_string *c, t_type type)
 {
@@ -43,6 +58,36 @@ void new_lexer(t_lexer **head, t_string *c, t_type type)
 	}
 }
 
+/**
+ * check_char - check for limeter.
+ * @line: the command.
+ * @i: the index now.
+ * @qout: the qout.
+ * Return: bool to stop or contunie.
+ */
+
+bool check_char(t_getline *line, int i, char *qout)
+{
+	if (!*qout && (line->buffer[i] == '"' || line->buffer[i] == '\''))
+		*qout = line->buffer[i];
+	else if (*qout == line->buffer[i])
+		*qout = 0;
+	if (*qout == 0)
+		if (line->buffer[i] == ' '
+		|| line->buffer[i] == '\t'
+		|| line->buffer[i] == '\n'
+		|| line->buffer[i] == '|'
+		|| line->buffer[i] == ';')
+			return (true);
+	return (false);
+}
+
+/**
+ * lexer - split and token the command.
+ * @line: the command.
+ * Return: linked list of lexer.
+ */
+
 t_lexer *lexer(t_getline *line)
 {
 	t_lexer *head = NULL;
@@ -60,18 +105,9 @@ t_lexer *lexer(t_getline *line)
 			break;
 		while (i < line->characters)
 		{
-			if (!qout && (line->buffer[i] == '"' || line->buffer[i] == '\''))
-				qout = line->buffer[i];
-			else if (qout == line->buffer[i])
-				qout = 0;
-			if (qout == 0)
-				if (line->buffer[i] == ' '
-				|| line->buffer[i] == '\t'
-				|| line->buffer[i] == '\n'
-				|| line->buffer[i] == '|'
-				|| line->buffer[i] == ';')
-					break;
-			new_string(&str, line->buffer[i]);	
+			if (check_char(line, i, &qout))
+				break;
+			new_string(&str, line->buffer[i]);
 			i++;
 		}
 		if (str)

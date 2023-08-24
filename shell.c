@@ -8,6 +8,14 @@
 void siggnal(int signall);
 void exec(t_lexer *ptr, t_env **genv, int *status);
 t_env *genv;
+
+/**
+ * find_env_p - find in env.
+ * @s: key.
+ * @env: env.
+ * Return: the value of key.
+*/
+
 char *find_env_p(char *s, t_env *env)
 {
 	t_env *tmp;
@@ -21,6 +29,12 @@ char *find_env_p(char *s, t_env *env)
 	}
 	return NULL;
 }
+
+/**
+ * find_env - find in env.
+ * @s: key.
+ * Return: the value of key.
+*/
 
 char *find_env(char *s)
 {
@@ -36,6 +50,7 @@ char *find_env(char *s)
 	return NULL;
 }
 
+/*
 void string_print(t_string *ptr)
 {
 	if (!ptr)
@@ -86,6 +101,7 @@ void env_print(t_env *env)
 		env = env->next;
 	}
 }
+*/
 
 int main(int ac, char **av, char **env)
 {

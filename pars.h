@@ -3,11 +3,24 @@
 
 #include "shell.h"
 
+/**
+ * enum s_type - type of token.
+ * @STR: string type.
+ * @PIP: | type.
+ * @SMC: ; type.
+ */
+
 typedef enum s_type {
 	STR,
 	PIP,
 	SMC
 } t_type;
+
+/**
+ * struct s_string - data type use in pars.
+ * @c: the content of the node.
+ * @next: thr next char.
+ */
 
 typedef struct s_string {
 	char c;

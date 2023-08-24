@@ -1,37 +1,11 @@
 #include "pars.h"
 #include "shell.h"
 
-size_t string_size(t_string *ptr)
-{
-	if (!ptr)
-		return (0);
-	return (string_size(ptr->next) + 1);
-}
-
-char *convert_string(t_string *s)
-{
-	char *str;
-	size_t size;
-	size_t index = 0;
-	char qout = 0;
-
-	size = string_size(s);
-	str = my_malloc(sizeof(char) * (size + 1));
-	if (!str)
-		return (str);
-	while (s)
-	{
-		if (!qout && (s->c == '"' || s->c == '\''))
-			qout = s->c;
-		else if (qout == s->c)
-			qout = 0;
-		else
-			str[index++] = s->c;
-		s = s->next;
-	}
-	str[index] = 0;
-	return (str);
-}
+/**
+ * cmd_size - count cmd size.
+ * @lexer: the leaxer.
+ * Return: size of lexer.
+ */
 
 size_t cmd_size(t_lexer *lexer)
 {
@@ -44,6 +18,13 @@ size_t cmd_size(t_lexer *lexer)
 	}
 	return (count);
 }
+
+/**
+ * split_lexer - fill the lexer from command.
+ * @head: head of lexer.
+ * @str: the string in the lexer.
+ * Return: void.
+ */
 
 void split_lexer(t_lexer **head, t_string *str)
 {
@@ -71,15 +52,24 @@ void split_lexer(t_lexer **head, t_string *str)
 		}
 		if (save)
 			new_lexer(head, save, STR);
-		
 	}
 }
+
+/**
+ * new_cmd - creat a new cmd.
+ * @lexer: my lexer.
+ * @pip: if pipe after cmd.
+ * @smc: if smc after cmd.
+ * @env: env
+ * @e: exit status.
+ * Return: lexer of new_cmd.
+ */
 
 t_lexer *new_cmd(t_lexer **lexer, bool *pip, bool *smc, t_env *env, int e)
 {
 	t_lexer *head = NULL;
 	t_string *str;
-	
+
 	*smc = false;
 	*pip = false;
 	while (*lexer && (*lexer)->type == STR)
@@ -98,6 +88,15 @@ t_lexer *new_cmd(t_lexer **lexer, bool *pip, bool *smc, t_env *env, int e)
 	return (head);
 }
 
+/**
+ * fill_cmd - fill cmd in 2d arr.
+ * @lexer: my lexer.
+ * @pip: if pipe after cmd.
+ * @smc: if smc after cmd.
+ * @env: env
+ * @e: exit status.
+ * Return: 2d arr to the cmd.
+ */
 
 char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc, int e, t_env *env)
 {

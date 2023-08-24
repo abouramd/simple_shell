@@ -1,5 +1,11 @@
 #include "pars.h"
 
+/**
+ * itoa - convert a number to string.
+ * @num: the number.
+ * Return: the number in string.
+ */
+
 char *itoa(long num)
 {
 	unsigned long nbr;
@@ -15,7 +21,8 @@ char *itoa(long num)
 	if (num <= 0)
 		size++;
 	nbr = num * ((num >= 0) - (num < 0));
-	if (!(str = my_malloc(size + 1)))
+	str = my_malloc(size + 1);
+	if (!str)
 		return (NULL);
 	str[size] = 0;
 	while (size--)

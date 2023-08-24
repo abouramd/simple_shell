@@ -1,6 +1,14 @@
 #include "pars.h"
 #include "shell.h"
 
+/**
+ * new_env - new env.
+ * @head: alloc struct of env.
+ * @value: the value of the node.
+ * @key: the var name.
+ * Return: no return value.
+ */
+
 void new_env(t_env **head, char *value, char *key)
 {
 	t_env *node;
@@ -13,7 +21,7 @@ void new_env(t_env **head, char *value, char *key)
 	if (value)
 		node->value = strdup(value);
 	else
-	 	node->value = NULL;
+		node->value = NULL;
 	node->next = NULL;
 	if (!*head)
 	{
@@ -27,6 +35,11 @@ void new_env(t_env **head, char *value, char *key)
 	}
 }
 
+/**
+ * free_env - free env.
+ * @env: my env.
+ * Return: no return value.
+ */
 
 void free_env(t_env **env)
 {
@@ -38,6 +51,13 @@ void free_env(t_env **env)
 		free(*env);
 	}
 }
+
+/**
+ * fill_env - fill env.
+ * @env: my env.
+ * Return: the struct of the new env.
+ */
+
 t_env *fill_env(char **env)
 {
 	t_env *nenv = NULL;
