@@ -49,9 +49,9 @@ int exec_cmd(char **cmd, t_env *genv)
 {
 	int ret = 0, flag = 0, status = 0;
 	pid_t id;
-	char *comand = NULL;
+	char *comand = cmd[0];
 
-	if (cmd[0][0] != '/' && cmd[0][0] != '.')
+	if (comand && comand[0] != '/' && comand[0] != '.')
 	{
 		flag = 1;
 		comand = get_path(cmd[0], genv);
