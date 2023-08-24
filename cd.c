@@ -101,7 +101,9 @@ int _cd(char **cmd, t_env **genv, int status)
 		ret = chdir(p);
 		if (ret != 0)
 		{
-			perror(NULL);
+			write(2, "./hsh: 1: cd: can't cd to ", 26);
+			write(2, p, strlen(p));
+			write(2, "\n", 1);
 			return (1);
 		}
 		printf("%s\n", find_env("OLDPWD"));
