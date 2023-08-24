@@ -116,6 +116,10 @@ int main(int ac, char **av, char **env)
 	t_getline l;
 	t_lexer *x;
 	int status = 0;
+	FILE* fptr = stdin;
+
+	if (ac == 2)
+		fptr = fopen(av[1],"r");
 
 	genv = fill_env(env);
 	/* env_print(genv); */
@@ -125,7 +129,7 @@ int main(int ac, char **av, char **env)
 	{
 		l.bufsize = 0;
 		l.buffer = NULL;
-		l.characters = getline(&l.buffer, &l.bufsize, stdin);
+		l.characters = getline(&l.buffer, &l.bufsize, fptr);
 		if (l.characters == -1)
 			return (free_env(&genv), free(l.buffer), status);
 		x = lexer(&l);
@@ -135,6 +139,8 @@ int main(int ac, char **av, char **env)
 		/* cmd_print(x);*/
 		my_free(); /* free all the data that you allocat with my_alloc */
 	}
+	if (ac == 2)
+		fclose(fptr);
 	return (status);
 }
 
