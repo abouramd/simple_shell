@@ -121,14 +121,13 @@ int main(int ac, char **av, char **env)
 	/* env_print(genv); */
 	(void) ac;
 	(void) av;
-	while (true)
-	{
+	while (true) {
 		l.bufsize = 0;
 		l.buffer = NULL;
 		write(1, "prompt >> ", 10);
 		l.characters = getline(&l.buffer, &l.bufsize, stdin);
 		if (l.characters == -1)
-			return (free_env(&genv), free(l.buffer), status);
+			return (free_env(&genv), free(l.buffer), status); /* replace 0 with the exit status*/
 		x = lexer(&l);
 		exec(x, &genv, &status);
 		/* lexer_print(x); */
