@@ -72,11 +72,16 @@ int _cd(char **cmd, t_env **genv)
 	else if (cmd[1] && cmd[2])
 	{
 		perror("cd: too many argument");
-		return (ret);
+		return (1);
 	}
 	else if (cmd[1] && strcmp(cmd[1], "-") != 0)
 	{
 		ret = chdir(cmd[1]);
+		if (ret != 0)
+		{
+			perror(NULL);
+			return (1);
+		}
 		update_oldpwd(buf, genv);
 		update_pwd(&genv);
 		return (ret);
