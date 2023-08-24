@@ -47,6 +47,7 @@ typedef struct s_getline
  * struct s_lexer - split the member
  * @content: the content
  * @type: the type of the token
+ * @next: next node.
  */
 
 typedef struct s_lexer
@@ -57,7 +58,7 @@ typedef struct s_lexer
 } t_lexer;
 
 
-t_lexer *lexer(t_getline* line);
+t_lexer *lexer(t_getline *line);
 
 char **fill_cmd(t_lexer **lexer, bool *pip, bool *smc, int e, t_env *env);
 
