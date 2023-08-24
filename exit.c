@@ -8,6 +8,7 @@
 int numdigit(char *num)
 {
 	int i;
+	int flg = 0;
 
 	i = 0;
 	if (num[i] && (num[i] == '-' || num[i] == '+'))
@@ -15,8 +16,11 @@ int numdigit(char *num)
 	while (num[i] && num[i] >= '0' && num[i] <= '9')
 	{
 		i++;
+		flg = 1;
 	}
-	return (-1);
+	if (flg)
+		return (0);
+	return (1);
 }
 
 /**
@@ -34,7 +38,7 @@ int ft_exit(char **cmd, t_env **genv)
 		write(1, "exit\n", 5);
 		exit(0);
 	}
-	else if (numdigit(cmd[1]) >= 0)
+	else if (numdigit(cmd[1]) == 0)
 	{
 		write(1, "exit\n", 5);
 		exit(ft_atoi(cmd[1]));
