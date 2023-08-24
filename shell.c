@@ -115,7 +115,7 @@ int main(int ac, char **av, char **env)
 {
 	t_getline l;
 	t_lexer *x;
-	int status;
+	int status = 0;
 
 	genv = fill_env(env);
 	/* env_print(genv); */
