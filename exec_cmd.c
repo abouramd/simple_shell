@@ -21,7 +21,7 @@ char *get_path(char *cmd, t_env *genv)
 		return (NULL);
 	paths = ft_split(path, ':');
 	i = 0;
-	while (paths[i])
+	while (paths && paths[i])
 	{
 		comand = malloc(strlen(paths[i]) + strlen(cmd) + 3);
 		strcpy(comand, paths[i]);

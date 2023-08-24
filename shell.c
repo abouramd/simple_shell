@@ -5,7 +5,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-
+void siggnal(int signall);
 void exec(t_lexer *ptr, t_env **genv, int *status);
 t_env *genv;
 char *find_env_p(char *s, t_env *env)
