@@ -67,7 +67,7 @@ int _cd(char **cmd, t_env **genv, int status)
 	{
 		ret = chdir(find_env_p("HOME", *genv));
 		if (ret != 0)
-			return (1);
+			return (0);
 		update_pwd(&genv);
 		update_oldpwd(buf, genv);
 		return (ret);
