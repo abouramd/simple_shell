@@ -125,7 +125,6 @@ int main(int ac, char **av, char **env)
 	{
 		l.bufsize = 0;
 		l.buffer = NULL;
-		write(1, "#cisfun$", 8);
 		l.characters = getline(&l.buffer, &l.bufsize, stdin);
 		if (l.characters == -1)
 			return (free_env(&genv), free(l.buffer), status);
