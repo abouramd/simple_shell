@@ -10,7 +10,7 @@
 int _setenv(char **cmd, t_env **genv, int status)
 {
 	(void) status;
-	if (!cmd[1] || !cmd[2])
+	if (!cmd[1] || !cmd[2] || cmd[3])
 	{
 		write(2, "Number Of Argument Not Valid\n", 29);
 		return (1);
