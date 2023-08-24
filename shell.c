@@ -27,7 +27,7 @@ char *find_env_p(char *s, t_env *env)
 			return (tmp->value);
 		tmp = tmp->next;
 	}
-	return NULL;
+	return (NULL);
 }
 
 /**
@@ -47,7 +47,7 @@ char *find_env(char *s)
 			return (tmp->value);
 		tmp = tmp->next;
 	}
-	return NULL;
+	return (NULL);
 }
 
 /*
@@ -103,6 +103,14 @@ void env_print(t_env *env)
 }
 */
 
+/**
+ * main - start.
+ * @ac: num of args.
+ * @av: args.
+ * @env: env.
+ * Return: 0;
+ */
+
 int main(int ac, char **av, char **env)
 {
 	t_getline l;
@@ -113,13 +121,14 @@ int main(int ac, char **av, char **env)
 	/* env_print(genv); */
 	(void) ac;
 	(void) av;
-	while (true) {
+	while (true)
+	{
 		l.bufsize = 0;
 		l.buffer = NULL;
 		write(1, "prompt >> ", 10);
-		l.characters = getline(&l.buffer,&l.bufsize,stdin);
+		l.characters = getline(&l.buffer, &l.bufsize, stdin);
 		if (l.characters == -1)
-			return (free_env(&genv), free(l.buffer), status); /* replace 0 with the exit status*/
+			return (free_env(&genv), free(l.buffer), status);
 		x = lexer(&l);
 		exec(x, &genv, &status);
 		/* lexer_print(x); */
