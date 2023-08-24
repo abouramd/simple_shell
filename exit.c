@@ -44,6 +44,7 @@ int ft_exit(char **cmd, t_env **genv, int status)
 		int e;
 
 		e = ft_atoi(cmd[1]);
+		free_env(genv);
 		my_free();
 		exit(e);
 	}
