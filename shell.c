@@ -129,11 +129,11 @@ int main(int ac, char **av, char **env)
 		if (l.characters == -1)
 			return (free_env(&genv), free(l.buffer), status);
 		x = lexer(&l);
+		free(l.buffer); /* free buffer */
 		exec(x, &genv, &status);
 		/* lexer_print(x); */
 		/* cmd_print(x);*/
 		my_free(); /* free all the data that you allocat with my_alloc */
-		free(l.buffer); /* free buffer */
 	}
 	return (status);
 }
