@@ -23,7 +23,7 @@ char *get_path(char *cmd, t_env *genv)
 	i = 0;
 	while (paths && paths[i])
 	{
-		comand = malloc(strlen(paths[i]) + strlen(cmd) + 3);
+		comand = my_malloc(strlen(paths[i]) + strlen(cmd) + 3);
 		strcpy(comand, paths[i]);
 		strcat(comand, "/");
 		strcat(comand, cmd);
@@ -88,7 +88,5 @@ int exec_cmd(char **cmd, t_env *genv)
 			ret = WEXITSTATUS(status);
 		}
 	}
-	if (flag)
-		free(comand);
 	return (ret);
 }
