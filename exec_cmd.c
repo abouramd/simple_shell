@@ -39,6 +39,39 @@ char *get_path(char *cmd, t_env *genv)
 }
 
 /**
+ * exec_erro - function to print exec function error
+ * @cmd: first parameter
+ * @comand: second parameter
+ * @i: fourth parameter
+ * Return: error number
+ */
+int exec_erro(char **cmd, char *comand, int i)
+{
+	int ret = 0;
+
+	if (i == 1)
+	{
+		if (!comand)
+		{
+			write(2, "./hsh: 1: ", 10);
+			if (cmd && cmd[0])
+				write(2, cmd[0], strlen(cmd[0]));
+			write(2, ": not found\n", 12);
+		}
+	}
+	else if (i == 2)
+	{
+		if (errno == EACCES)
+			ret = 126;
+		else
+			ret = 127;
+		if (comand)
+			perror(NULL);
+	}
+	return (ret);
+}
+
+/**
  * exec_cmd -  function to execute regulare command
 *@cmd: command to execute with opetion
 *@genv: env passed as parameter
@@ -55,23 +88,10 @@ int exec_cmd(char **cmd, t_env *genv)
 	{
 		flag = 1;
 		comand = get_path(cmd[0], genv);
-		if (!comand)
-		{
-			write(2, "./hsh: 1: ", 10);
-			if (cmd && cmd[0])
-				write(2, cmd[0], strlen(cmd[0]));
-			write(2, ": not found\n", 12);
-		}
+		exec_erro(cmd, comand, 1);
 	}
 	if (!comand || access(comand, F_OK) == -1)
-	{
-		if (errno == EACCES)
-			ret = 126;
-		else
-			ret = 127;
-		if (comand)
-			perror(NULL);
-	}
+		ret = exec_erro(cmd, comand, 2);
 	else
 	{
 		id = fork();
