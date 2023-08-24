@@ -58,8 +58,7 @@ void update_oldpwd(char *v, t_env **genv)
 
 int _cd(char **cmd, t_env **genv, int status)
 {
-	char *p;
-	char buf[PATH_MAX];
+	char *p, buf[PATH_MAX];
 	int ret = 1;
 
 	(void) status;
@@ -75,20 +74,12 @@ int _cd(char **cmd, t_env **genv, int status)
 		return (ret);
 	}
 	else if (cmd[1] && cmd[2])
-	{
-		perror("cd: too many argument");
-		return (1);
-	}
+		return (erro(NULL, 2));
 	else if (cmd[1] && strcmp(cmd[1], "-") != 0)
 	{
 		ret = chdir(cmd[1]);
 		if (ret != 0)
-		{
-			write(2, "./hsh: 1: cd: can't cd to ", 26);
-			write(2, cmd[1], strlen(cmd[1]));
-			write(2, "\n", 1);
-			return (1);
-		}
+			return (erro(cmd[1], 1));
 		update_oldpwd(buf, genv);
 		update_pwd(&genv);
 		return (ret);
@@ -105,12 +96,7 @@ int _cd(char **cmd, t_env **genv, int status)
 		}
 		ret = chdir(p);
 		if (ret != 0)
-		{
-			write(2, "./hsh: 1: cd: can't cd to ", 26);
-			write(2, p, strlen(p));
-			write(2, "\n", 1);
-			return (1);
-		}
+			return (erro(p, 1));
 		printf("%s\n", find_env("OLDPWD"));
 		update_oldpwd(buf, genv);
 		update_pwd(&genv);
