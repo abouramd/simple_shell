@@ -58,7 +58,6 @@ void delete_node(char *k, t_env **genv)
 	t_env *prev;
 
 	current = *genv;
-	prev = current;
 	if (!(*genv))
 		return;
 	else if (strcmp((*genv)->key, k) == 0)
@@ -67,18 +66,18 @@ void delete_node(char *k, t_env **genv)
 		free(current);
 		return;
 	}
-	while (genv)
+	while (current && current->next)
 	{
-		if (strcmp(current->key, k) == 0)
+		if (strcmp(current->next->key, k) == 0)
 		{
 			prev = current->next;
-			free(current);
-			return;
+			current->next = prev->next;
+			free(prev->key);
+			free(prev->value);
+			free(prev);
 		}
-		prev = current;
 		current = current->next;
 	}
-	current = prev;
 }
 
 /**
