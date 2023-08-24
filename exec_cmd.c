@@ -65,7 +65,7 @@ int exec_cmd(char **cmd, t_env *genv)
 			ret = 126;
 		else
 			ret = 127;
-		write (2, " : not found\n", 13);
+		write (2, ": not found\n", 12);
 	}
 	else
 	{
