@@ -120,7 +120,13 @@ int main(int ac, char **av, char **env)
 
 	if (ac == 2)
 		fptr = fopen(av[1],"r");
-
+	if (!fptr)
+	{
+		write(2, "./hsh: 0: Can't open ", 21);
+		write(2, av[1], strlen(av[1]));
+		write(2, "\n", 1);
+		return (127);
+	}
 	genv = fill_env(env);
 	/* env_print(genv); */
 	(void) ac;
