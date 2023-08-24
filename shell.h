@@ -16,9 +16,11 @@
  * struct s_env - env.
  * @key: var key.
  * @value: var value.
+ * @next: next node.
 */
 
-typedef struct s_env {
+typedef struct s_env
+{
 	char *key;
 	char *value;
 	struct s_env *next;
