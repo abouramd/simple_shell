@@ -12,7 +12,7 @@ void update_pwd(t_env ***genv)
 	getcwd(cwd, PATH_MAX);
 	while (head->next)
 	{
-		if (strcmp(head->key, "HOME") == 0)
+		if (strcmp(head->key, "PWD") == 0)
 		{
 			free(head->value);
 			head->value = malloc(strlen(cwd) + 1);
@@ -66,6 +66,7 @@ int _cd(char **cmd, t_env **genv)
 	{
 		ret = chdir(find_env("HOME"));
 		update_pwd(&genv);
+		update_oldpwd(buf, genv);
 		return (ret);
 	}
 	else if (cmd[1] && cmd[2])
@@ -77,12 +78,14 @@ int _cd(char **cmd, t_env **genv)
 	{
 		ret = chdir(cmd[1]);
 		update_oldpwd(buf, genv);
+		update_pwd(&genv);
 		return (ret);
 	}
 	else
 	{
 		ret = chdir(find_env("OLDPWD"));
 		update_oldpwd(buf, genv);
+		update_pwd(&genv);
 		return (ret);
 	}
 
