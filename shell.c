@@ -136,6 +136,6 @@ int main(int ac, char **av, char **env)
 		my_free(); /* free all the data that you allocat with my_alloc */
 		free(l.buffer); /* free buffer */
 	}
-	return (0);
+	return (status);
 }
 
