@@ -15,6 +15,7 @@ int _setenv(char **cmd, t_env **genv, int status)
 		perror("Number Of Argument Not Valid");
 		return (1);
 	}
-	newnode(cmd[1], cmd[2], genv);
+	if (!find_env_p(cmd[1], genv))
+		newnode(cmd[1], cmd[2], genv);
 	return (0);
 }
